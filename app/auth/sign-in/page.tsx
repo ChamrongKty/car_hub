@@ -1,21 +1,27 @@
-"use client"
+"use client";
 import { signIn } from "next-auth/react";
-import Image from "next/image"
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
- const SignIn = ()=> {
+const SignIn = () => {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSumbit = async (e:React.FormEvent<HTMLFormElement>)=>{
+  const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const reposnse = await signIn('credentials',{redirect:false,email:email,password:password})
-    if(!reposnse?.error){
+    const reposnse = await signIn("credentials", {
+      redirect: false,
+      email: email,
+      password: password,
+    });
+    if (!reposnse?.error) {
       router.back();
+    } else {
+      console.log(reposnse.error);
     }
-  }
+  };
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -33,9 +39,12 @@ import { useState } from "react";
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={(e)=>handleSumbit(e)}>
+          <form className="space-y-6" onSubmit={(e) => handleSumbit(e)}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Email address
               </label>
               <div className="mt-2">
@@ -46,18 +55,24 @@ import { useState } from "react";
                   autoComplete="email"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  onChange={(e)=>setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
                   Password
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <a
+                    href="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
                     Forgot password?
                   </a>
                 </div>
@@ -70,7 +85,7 @@ import { useState } from "react";
                   autoComplete="current-password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  onChange={(e)=>setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -86,14 +101,17 @@ import { useState } from "react";
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Don't have account yet?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            Don't have account yet?{" "}
+            <a
+              href="#"
+              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+            >
               Sign Up
             </a>
           </p>
         </div>
       </div>
     </>
-  )
-}
-export default SignIn
+  );
+};
+export default SignIn;
