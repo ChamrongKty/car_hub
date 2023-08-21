@@ -4,7 +4,7 @@ import { SearchManufacturerProps } from "@/type";
 import { Combobox, Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { Fragment, useState } from "react";
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { CheckIcon } from '@heroicons/react/20/solid'
 
 const SearchManuFacturer = ({
   selected,

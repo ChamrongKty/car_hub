@@ -2,14 +2,16 @@
 import React from 'react'
 import { CustomButton } from '.'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const Hero = () => {
+    const router = useRouter();
     const hanldeScroll = ()=>{
-
+        router.push('/car-hub')
     }
   return (
     <div className='hero'>
-        <div className='flex-1 pt-36 padding-x'>
+        <div className='flex-1 pt-28 padding-x'>
         <h1 className='hero__title'>Find,book,or rent a car - quickly and easily!</h1>
 
         <p className='hero__subtitle'>
@@ -23,7 +25,7 @@ const Hero = () => {
             <div className="hero__image">
                 <Image src={'/hero.png'} fill className="object-contain" alt='hero'/>
             </div>
-            <div className="hero__image-overlay"></div>
+            {/* <div className="hero__image-overlay"></div> */}
         </div>
     </div>
   )

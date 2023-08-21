@@ -4,8 +4,11 @@ import Image from "next/image";
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { generateCarImageUrl } from "@/utils";
+import { CustomButton } from ".";
+import { useRouter } from "next/navigation";
 
 const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
+  const router = useRouter();
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -62,7 +65,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                     <div className="flex gap-3 ">
                       <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                         <Image
-                          src={generateCarImageUrl(car,'29')}
+                          src={generateCarImageUrl(car, "29")}
                           alt="car model"
                           priority
                           fill
@@ -71,7 +74,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                       </div>
                       <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                         <Image
-                          src={generateCarImageUrl(car,'33')}
+                          src={generateCarImageUrl(car, "33")}
                           alt="car model"
                           priority
                           fill
@@ -80,7 +83,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                       </div>
                       <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                         <Image
-                          src={generateCarImageUrl(car,'13')}
+                          src={generateCarImageUrl(car, "13")}
                           alt="car model"
                           priority
                           fill
@@ -103,13 +106,28 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                             className="flex justify-between gap-5 w-full text-right"
                             key={key}
                           >
-                            <h4 className="text-gray capitalize">{key.split("_").join(" ")}</h4>
-                            <p className="text-black-100 font-semibold">{value}</p>
+                            <h4 className="text-gray capitalize">
+                              {key.split("_").join(" ")}
+                            </h4>
+                            <p className="text-black-100 font-semibold">
+                              {value}
+                            </p>
                           </div>
                         );
                       })}
                     </div>
                   </div>
+                  <CustomButton
+                    title="Rent Now"
+                    containerStyle="w-full py-[16px] rounded-full bg-primary-blue mt-5"
+                    btnType={"button"}
+                    textStyles="text-white text-[14px] leading-[17px] font-bold"
+                    rightIcon="/right-arrow.svg"
+                    handleClick={(e)=>{
+                      e.preventDefault();
+                      router.push('checkout')
+                    }}
+                  />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
