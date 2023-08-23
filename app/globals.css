@@ -217,3 +217,13 @@
   @apply cursor-default select-none py-2 pl-10 pr-4;
 }
 /* END: search manufacturer styles */
+
+.landing-page-img{
+  width: 60%;
+ 
+}
+
+.landing-page-title{
+  width: 40%;
+  text-align: center;
+}

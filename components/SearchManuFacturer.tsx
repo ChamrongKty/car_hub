@@ -4,11 +4,11 @@ import { SearchManufacturerProps } from "@/type";
 import { Combobox, Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { Fragment, useState } from "react";
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { CheckIcon } from '@heroicons/react/20/solid'
 
 const SearchManuFacturer = ({
-  manufacturer,
-  setMenufacturer,
+  selected,
+  setSelected,
 }: SearchManufacturerProps) => {
   const [query, setQuery] = useState("");
 
@@ -23,7 +23,7 @@ const SearchManuFacturer = ({
         });
   return (
     <div className="search-manufacturer">
-      <Combobox value={manufacturer} onChange={setMenufacturer}>
+      <Combobox value={selected} onChange={setSelected}>
         <div className="relative w-full">
           <Combobox.Button className={"absolute top-[14px]"}>
             <Image
