@@ -30,8 +30,10 @@ const CarCard = ({ car }: CarCardProps) => {
           src={generateCarImageUrl(car)}
           alt="car model"
           priority
-          fill
-          className="object-contain"
+          width="0"
+          height="0"
+          sizes="100vw"
+          className="w-full h-auto"
         />
       </div>
       <div className="relative flex w-full mt-2">
@@ -42,6 +44,7 @@ const CarCard = ({ car }: CarCardProps) => {
               alt="steering wheel"
               width={20}
               height={20}
+              className="object-contain"
             />
             <p className="text-[14px]">
               {transmission === "a" ? "Automatic" : "Manual"}
@@ -53,6 +56,7 @@ const CarCard = ({ car }: CarCardProps) => {
               alt="steering wheel"
               width={20}
               height={20}
+              className="object-contain"
             />
             <p className="text-[14px]">{drive.toUpperCase()}</p>
           </div>
@@ -62,6 +66,7 @@ const CarCard = ({ car }: CarCardProps) => {
               alt="steering wheel"
               width={20}
               height={20}
+                    className="object-contain"
             />
             <p className="text-[14px]">{city_mpg} MPG</p>
           </div>
@@ -74,16 +79,17 @@ const CarCard = ({ car }: CarCardProps) => {
             textStyles="text-white text-[14px] leading-[17px] font-bold"
             rightIcon="/right-arrow.svg"
             handleClick={() => setIsOpen(true)}
+            disabled={false}
           />
         </div>
       </div>
-       <CarDetails 
+      <CarDetails
         isOpen={isOpen}
-        closeModal={()=>{
-            setIsOpen(false)
+        closeModal={() => {
+          setIsOpen(false);
         }}
         car={car}
-       />
+      />
     </div>
   );
 };

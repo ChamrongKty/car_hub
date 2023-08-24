@@ -1,9 +1,7 @@
 import { Footer, NavBar } from "@/components";
-import React from "react";
+import React, { Suspense } from "react";
 
-const layout = ({children}:{
-    children:React.ReactNode
-}) => {
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="relative">
       <NavBar />

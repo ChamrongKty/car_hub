@@ -1,4 +1,5 @@
 import { CarProps,FilterProps } from "@/type";
+import { Stripe, loadStripe } from '@stripe/stripe-js';
 
 export async function fetchCars(filter:FilterProps) {
 
@@ -56,3 +57,32 @@ export const updateSearchParams = (type:string,value:string) => {
 
     return newPathname;
   };
+
+
+
+let stripePromise: Promise<Stripe | null>;
+export const handleLoadStripe = ()=>{
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+  }
+  return stripePromise;
+}
+
+export function formatAmountForStripe(amount:number, currency:string) {
+  // Check the currency and format the amount accordingly
+  switch (currency) {
+    case 'USD':
+      // For USD, multiply the amount by 100 to convert it to cents
+      return amount * 100;
+    case 'EUR':
+      // For EUR, also multiply by 100 as it uses cents
+      return amount * 100;
+    // Add cases for other currencies as needed
+    case 'GBP':
+      return amount * 100;
+    // Handle other currencies here
+    default:
+      // If the currency is not recognized, you might want to throw an error or handle it differently
+      throw new Error(`Unsupported currency: ${currency}`);
+  }
+}

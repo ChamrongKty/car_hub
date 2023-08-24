@@ -3,10 +3,10 @@ import { CustomButtonProps } from '@/type'
 import Image from 'next/image'
 import React from 'react'
 
-const CustomButton = ({title,btnType,containerStyle,textStyles,rightIcon,handleClick} : CustomButtonProps) => {
+const CustomButton = ({title,btnType,containerStyle,textStyles,rightIcon,handleClick,disabled} : CustomButtonProps) => {
   return (
     <button
-        disabled={false}
+        disabled={disabled}
         type={btnType || "button"}
         className={`custom-btn ${containerStyle}`}
         onClick={handleClick}

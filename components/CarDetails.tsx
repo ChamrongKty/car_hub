@@ -3,7 +3,7 @@ import { CarDetailsProps } from "@/type";
 import Image from "next/image";
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { generateCarImageUrl } from "@/utils";
+import { calculateCarRent, generateCarImageUrl } from "@/utils";
 import { CustomButton } from ".";
 import { useRouter } from "next/navigation";
 
@@ -118,14 +118,15 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                     </div>
                   </div>
                   <CustomButton
+                    disabled={false}
                     title="Rent Now"
                     containerStyle="w-full py-[16px] rounded-full bg-primary-blue mt-5"
                     btnType={"button"}
                     textStyles="text-white text-[14px] leading-[17px] font-bold"
                     rightIcon="/right-arrow.svg"
-                    handleClick={(e)=>{
+                    handleClick={(e) => {
                       e.preventDefault();
-                      router.push('checkout')
+                      router.push(`checkout?price=${calculateCarRent(car.city_mpg, car.year)}`);
                     }}
                   />
                 </Dialog.Panel>
